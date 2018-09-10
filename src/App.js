@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Userioexercise from './Userioexercise/Userioexercise';
 import './App.css';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
+
+
+  state = {
+    Username: [
+      {username: 'Uday'},
+      {username: 'Hema'},
+      {username: 'Ani'}
+    ]
+  }
+
+  usernameChangedHandler = (event) => {
+      this.setState({
+        Username: [
+          {username: event.target.value},
+          {username: event.target.value},
+          {username: 'Aakash'}
+        ]
+      })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <div className="App">
+          <h2> Welcome to React IO</h2>
+          <Userioexercise/>
+          <UserInput  
+            changed = { this.usernameChangedHandler}
+            currentName= {this.state.Username[0].username}
+            />
+          <UserOutput username= {this.state.Username[0].username}/>
+          <UserOutput username= {this.state.Username[1].username}/>
+          <UserOutput username= {this.state.Username[2].username}/>
+        </div>
     );
   }
 }
